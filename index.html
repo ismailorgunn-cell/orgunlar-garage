@@ -88,6 +88,39 @@
       gap:24px;
       padding:18px 0;
     }
+
+    .brand-row{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand-logo{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      border:1px solid rgba(255,35,35,.28);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 35%),
+        linear-gradient(180deg,#1a1a1d 0%, #0a0a0c 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 0 20px rgba(255,35,35,.15);
+      flex:none;
+    }
+
+    .brand-logo span{
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.04em;
+      color:#fff;
+    }
+
+    .brand-logo span b{
+      color:#ff2b2b;
+    }
+
     .brand small{
       display:block;
       font-size:11px;
@@ -444,6 +477,94 @@
       line-height:1.9;
     }
 
+    .expertiz-visual{
+      margin-top:22px;
+      height:290px;
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      position:relative;
+      background:
+        radial-gradient(circle at 75% 20%, rgba(255,35,35,.25), transparent 18%),
+        linear-gradient(135deg,#111216 0%, #0c0d10 45%, #180808 100%);
+    }
+
+    .expertiz-visual::before{
+      content:"";
+      position:absolute;
+      left:9%;
+      right:9%;
+      bottom:30px;
+      height:105px;
+      border-radius:55px 55px 22px 22px;
+      background:linear-gradient(180deg,#a10f0f 0%, #ff2e2e 35%, #700909 100%);
+      transform:skewX(-12deg);
+      box-shadow:
+        0 0 35px rgba(255,35,35,.35),
+        inset 0 -22px 28px rgba(0,0,0,.24);
+    }
+
+    .expertiz-visual::after{
+      content:"";
+      position:absolute;
+      left:17%;
+      right:17%;
+      bottom:112px;
+      height:34px;
+      border-radius:18px;
+      background:linear-gradient(180deg,#2c2f34,#111318);
+      transform:skewX(-12deg);
+      box-shadow:0 10px 30px rgba(0,0,0,.45);
+    }
+
+    .expertiz-overlay{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:20px;
+      z-index:2;
+    }
+
+    .expertiz-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+
+    .expertiz-badge{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,35,35,.34);
+      background:rgba(255,35,35,.12);
+      color:#ffc2c2;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .expertiz-checks{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      max-width:520px;
+    }
+
+    .expertiz-check{
+      background:rgba(0,0,0,.42);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:12px 14px;
+      color:#eef2f6;
+      font-size:14px;
+      font-weight:600;
+      backdrop-filter:blur(4px);
+    }
+
     .about-grid{
       display:grid;
       grid-template-columns:1fr 1.08fr;
@@ -709,6 +830,10 @@
         flex-wrap:wrap;
       }
       .brand strong{font-size:22px}
+      .brand-logo{
+        width:46px;
+        height:46px;
+      }
       .hero h1{font-size:48px}
       .section{padding:72px 0}
       .section-head h2{font-size:38px}
@@ -737,6 +862,12 @@
         flex-direction:column;
         align-items:flex-start;
       }
+      .expertiz-checks{
+        grid-template-columns:1fr;
+      }
+      .expertiz-visual{
+        height:240px;
+      }
     }
   </style>
 </head>
@@ -744,9 +875,15 @@
 
   <header class="topbar">
     <div class="container topbar-inner">
-      <div class="brand">
-        <small>Luxury Car Service</small>
-        <strong>ORGUNLAR GARAGE</strong>
+      <div class="brand-row">
+        <div class="brand-logo">
+          <span><b>O</b>G</span>
+        </div>
+
+        <div class="brand">
+          <small>Luxury Car Service</small>
+          <strong>ORGUNLAR GARAGE</strong>
+        </div>
       </div>
 
       <nav class="nav">
@@ -905,11 +1042,30 @@
           <small>Ekspertiz Bölümü</small>
           <h2 style="font-size:0; line-height:0; margin:0;"></h2>
         </div>
+
         <h3>Garantili Arabam yetkili bayisi olarak ekspertiz hizmeti</h3>
+
         <p>
           Mekanik servis ana odağımız olsa da ekspertiz tarafında da kurumsal güven sunuyoruz.
           Araç alım-satım öncesi kontrollerde müşteriye daha güçlü güven vermek için ekspertiz bölümünü ayrı bir yapıda konumlandırdık.
         </p>
+
+        <div class="expertiz-visual">
+          <div class="expertiz-overlay">
+            <div class="expertiz-top">
+              <div class="expertiz-badge">Ekspertiz Alanı</div>
+              <div class="expertiz-badge">Güven • Kontrol • Onay</div>
+            </div>
+
+            <div class="expertiz-checks">
+              <div class="expertiz-check">✓ Kaporta Kontrolü</div>
+              <div class="expertiz-check">✓ Boya Kontrolü</div>
+              <div class="expertiz-check">✓ Mekanik Kontrol</div>
+              <div class="expertiz-check">✓ Elektronik Kontrol</div>
+            </div>
+          </div>
+        </div>
+
         <div class="panel-note">
           Kaporta, boya, mekanik, elektronik ve genel durum kontrolleri detaylı şekilde değerlendirilir.
           Yetkili bayi desteği sayesinde süreç daha profesyonel ve daha güven verici şekilde ilerler.
