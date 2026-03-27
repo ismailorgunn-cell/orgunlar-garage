@@ -1,64 +1,1166 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>ORGUNLAR GARAGE</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORGUNLAR GARAGE</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
 
-<style>
-body {
-    margin:0;
-    font-family: Arial;
-    background:black;
-    color:white;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: #fff;
+      line-height: 1.6;
+    }
 
-.container {
-    padding:50px;
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-h1 {
-    font-size:50px;
-}
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
 
-.red {
-    color:red;
-}
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.92);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
 
-button {
-    padding:15px 25px;
-    margin-top:20px;
-    background:red;
-    border:none;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-}
-</style>
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
+
+    .brand small {
+      display: block;
+      color: #999;
+      letter-spacing: 4px;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .brand strong {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: #ddd;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      color: #ff2a2a;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #ff1010;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #e10000;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255, 16, 16, 0.5);
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 90px 0 70px;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,0,0,0.18), transparent 35%),
+        radial-gradient(circle at 85% 20%, rgba(255,0,0,0.08), transparent 25%),
+        #050505;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      color: #ffb3b3;
+      border: 1px solid rgba(255,0,0,0.3);
+      background: rgba(255,0,0,0.08);
+      border-radius: 999px;
+      padding: 12px 20px;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      font-size: 68px;
+      line-height: 1.05;
+      margin-bottom: 18px;
+      font-weight: 900;
+    }
+
+    .hero h1 .white {
+      color: #fff;
+    }
+
+    .hero h1 .red {
+      color: #ff1c1c;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #d2d2d2;
+      max-width: 700px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .feature-chip {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #efefef;
+      font-size: 14px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, #111, #060606);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 0 0 1px rgba(255,0,0,0.06), 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .hero-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .hero-card-top span {
+      color: #999;
+      letter-spacing: 4px;
+      font-size: 12px;
+    }
+
+    .hero-card-top strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 28px;
+    }
+
+    .mini-badge {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,0,0,0.3);
+      background: rgba(255,0,0,0.08);
+      color: #ffbcbc;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .hero-card-boxes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .info-box {
+      border-radius: 20px;
+      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .info-box small {
+      color: #999;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .info-box h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .info-box p {
+      color: #cfcfcf;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    .quick-contact {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: #090909;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .quick-contact span {
+      color: #aaa;
+    }
+
+    .quick-contact a {
+      color: #ff4040;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-head {
+      margin-bottom: 34px;
+    }
+
+    .section-head small {
+      color: #ff5a5a;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+
+    .section-head h2 {
+      font-size: 42px;
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+
+    .section-head p {
+      color: #bdbdbd;
+      max-width: 760px;
+    }
+
+    .stats {
+      padding-top: 30px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: #0b0b0b;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 24px;
+    }
+
+    .stat-card h3 {
+      color: #ff2323;
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    .stat-card p {
+      color: #cfcfcf;
+      font-size: 15px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 26px;
+      padding: 28px;
+      transition: 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,0,0,0.35);
+    }
+
+    .service-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: rgba(255,0,0,0.1);
+      border: 1px solid rgba(255,0,0,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: #c6c6c6;
+      font-size: 15px;
+    }
+
+    .ekspertiz {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .ekspertiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border-radius: 28px;
+      padding: 30px;
+      background: linear-gradient(180deg, rgba(255,0,0,0.07), rgba(0,0,0,0.4));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .panel.dark {
+      background: #0a0a0a;
+    }
+
+    .panel h3 {
+      font-size: 34px;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .panel p {
+      color: #cfcfcf;
+      margin-bottom: 16px;
+    }
+
+    .panel-note {
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 18px;
+      border-radius: 18px;
+      color: #d8d8d8;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .step strong {
+      display: block;
+      font-size: 38px;
+      color: #ff2020;
+      margin-bottom: 10px;
+    }
+
+    .step h4 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: #c7c7c7;
+      font-size: 15px;
+    }
+
+    .booking {
+      background: #050505;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 28px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      color: #b8b8b8;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      background: #000;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .day-tabs,
+    .time-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .day-btn,
+    .time-btn {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #000;
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 700;
+    }
+
+    .day-btn.active,
+    .time-btn.active {
+      background: #ff1111;
+      border-color: #ff1111;
+    }
+
+    .summary {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .summary div {
+      margin-bottom: 8px;
+      color: #dadada;
+    }
+
+    .working-hours {
+      margin-top: 20px;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 10px;
+      color: #ddd;
+    }
+
+    .faq-wrap {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .faq-item {
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 22px;
+      margin-bottom: 14px;
+    }
+
+    .faq-item h4 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .faq-item p {
+      color: #cfcfcf;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .contact-link {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #000;
+      margin-bottom: 14px;
+    }
+
+    .contact-link .icon {
+      font-size: 22px;
+      color: #ff2424;
+    }
+
+    .contact-link strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    .contact-link span {
+      color: #cfcfcf;
+      font-size: 15px;
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: #999;
+      text-align: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .ekspertiz-grid,
+      .about-grid,
+      .booking-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .stats-grid,
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero h1 {
+        font-size: 52px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero-features,
+      .services-grid,
+      .stats-grid,
+      .steps,
+      .form-grid,
+      .hero-card-boxes {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .section-head h2 {
+        font-size: 34px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h1>
-        Premium Araç Servisi <br>
-        <span class="red">Garantili & Yetkili Ekspertiz</span>
-    </h1>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <small>LUXURY CAR SERVICE</small>
+        <strong>ORGUNLAR GARAGE</strong>
+      </div>
 
-    <p>
-        ORGUNLAR GARAGE <br>
-        Lefkoşa Sanayi Bölgesi
-    </p>
+      <nav class="nav">
+        <a href="#hizmetler">Hizmetler</a>
+        <a href="#ekspertiz">Ekspertiz</a>
+        <a href="#hakkimizda">Hakkımızda</a>
+        <a href="#randevu">Randevu</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
 
-    <button onclick="window.location.href='tel:+905338650737'">
-        Hemen Ara
-    </button>
+      <a class="btn btn-primary" href="https://wa.me/905338650737" target="_blank">WhatsApp</a>
+    </div>
+  </header>
 
-    <br>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">LEFKOŞA SANAYİ BÖLGESİ</div>
 
-    <button onclick="window.location.href='https://wa.me/905338650737'">
-        WhatsApp
-    </button>
-</div>
+        <h1>
+          <span class="white">Premium Araç Servisi</span><br>
+          <span class="white"><span class="red">Garantili & Yetkili</span> Ekspertiz</span>
+        </h1>
+
+        <p>
+          ORGUNLAR GARAGE olarak mekanik servis, arıza tespiti, periyodik bakım ve ekspertiz hizmetlerini
+          güven veren bir yapıyla sunuyoruz. Hemen ara, WhatsApp’tan yaz veya randevu oluştur.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#randevu">Randevu Al</a>
+          <a class="btn btn-outline" href="tel:+905338650737">Hemen Ara</a>
+          <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=Orgunlar+Garage,+Lefko%C5%9Fa,+Sanayi+Cd,+21.+Sk+No:41,+Lefko%C5%9Fa+1025" target="_blank">Konum İçin Tıkla</a>
+        </div>
+
+        <div class="hero-features">
+          <div class="feature-chip">Hızlı randevu</div>
+          <div class="feature-chip">Profesyonel ekipman</div>
+          <div class="feature-chip">Garantili Arabam yetkili bayisi</div>
+          <div class="feature-chip">Şeffaf fiyatlandırma</div>
+          <div class="feature-chip">Premium hizmet yapısı</div>
+          <div class="feature-chip">WhatsApp iletişim</div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <div>
+            <span>MEKANİK SERVİS • EKSPERTİZ</span>
+            <strong>Lefkoşa’da premium hizmet</strong>
+          </div>
+          <div class="mini-badge">Güven • Kalite</div>
+        </div>
+
+        <div class="hero-card-boxes">
+          <div class="info-box">
+            <small>Uzmanlık</small>
+            <h3>Mekanik + Ekspertiz</h3>
+            <p>Arızadan bakıma, ekspertizden elektronik kontrole kadar tek noktadan çözüm.</p>
+          </div>
+
+          <div class="info-box">
+            <small>Yetki</small>
+            <h3>Garantili Arabam</h3>
+            <p>Ekspertiz tarafında güven veren süreç ve kurumsal bayi desteği.</p>
+          </div>
+        </div>
+
+        <div class="quick-contact">
+          <span>Hızlı İletişim</span>
+          <a href="tel:+905338650737">0 533 865 07 37</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>100%</h3>
+          <p>Şeffaf işçilik anlayışı</p>
+        </div>
+        <div class="stat-card">
+          <h3>7/24</h3>
+          <p>WhatsApp iletişim desteği</p>
+        </div>
+        <div class="stat-card">
+          <h3>1-1</h3>
+          <p>Müşteri ile net iletişim</p>
+        </div>
+        <div class="stat-card">
+          <h3>Premium</h3>
+          <p>Marka ve hizmet yaklaşımı</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hizmetler">
+    <div class="container">
+      <div class="section-head">
+        <small>Hizmetlerimiz</small>
+        <h2>Mekanik tarafta güçlü, işçilikte net</h2>
+        <p>
+          Önceliğimiz mekanik servis. Aracın sorununu doğru tespit edip gereksiz işlem çıkarmadan net çözüm sunuyoruz.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>Mekanik Servis</h3>
+          <p>Periyodik bakım, arıza tespiti, motor, yürüyen aksam ve genel servis işlemleri profesyonel şekilde yapılır.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📟</div>
+          <h3>Diagnostik Tarama</h3>
+          <p>Gelişmiş cihazlarla hata tespiti, sistem analizi ve net raporlama sunuyoruz.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🛡️</div>
+          <h3>Premium Araç Hizmeti</h3>
+          <p>Lüks ve performans araçlarına titiz, güvenilir ve temiz işçilik yaklaşımı sunuyoruz.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">⚙️</div>
+          <h3>Periyodik Bakım</h3>
+          <p>Yağ, filtre, sıvılar ve genel kontrol işlemleri ile aracının bakım düzenini koruyoruz.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🚗</div>
+          <h3>Araç Kontrol Paketi</h3>
+          <p>Satın alma öncesi veya genel durum değerlendirmesi için hızlı ve güvenilir kontrol hizmeti.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">⏱️</div>
+          <h3>Hızlı Arıza Tespiti</h3>
+          <p>Aracındaki sorunu zaman kaybetmeden analiz edip net yönlendirme sağlıyoruz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ekspertiz" class="ekspertiz">
+    <div class="container ekspertiz-grid">
+      <div class="panel">
+        <div class="section-head" style="margin-bottom:20px;">
+          <small>Ekspertiz Bölümü</small>
+          <h2 style="font-size:38px;">Garantili Arabam yetkili bayisi olarak ekspertiz hizmeti</h2>
+        </div>
+        <p>
+          Mekanik servis ana odağımız olsa da ekspertiz tarafında da kurumsal güven sunuyoruz.
+          Araç alım-satım öncesi kontrollerde müşteriye daha güçlü güven vermek için ekspertiz bölümünü ayrı konumlandırdık.
+        </p>
+        <div class="panel-note">
+          Kaporta, boya, mekanik, elektronik ve genel durum kontrolleri detaylı şekilde değerlendirilir.
+          Yetkili bayi desteği sayesinde süreç daha profesyonel ve daha güven verici şekilde ilerler.
+        </div>
+      </div>
+
+      <div>
+        <div class="panel dark" style="margin-bottom:16px;">
+          <h3>Kurumsal Güven</h3>
+          <p>Yetkili bayi desteği ekspertiz sürecini daha güvenilir ve daha profesyonel hale getirir.</p>
+        </div>
+
+        <div class="panel dark" style="margin-bottom:16px;">
+          <h3>Detaylı Kontrol</h3>
+          <p>Alım öncesi ekspertiz ile müşteriye net karar verme zemini sunar.</p>
+        </div>
+
+        <div class="panel dark">
+          <h3>Randevulu Sistem</h3>
+          <p>Saat çakışmalarını azaltmak ve müşteriyi bekletmemek için planlı şekilde ilerlenir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hakkimizda">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="section-head">
+            <small>Hakkımızda</small>
+            <h2>Aracına sadece işlem değil, güven de veriyoruz</h2>
+            <p>
+              ORGUNLAR GARAGE olarak amacımız müşteriye sadece servis sunmak değil, doğru tespit,
+              temiz işçilik ve güven veren bir deneyim yaşatmak. Mekanik servis, ekspertiz ve araç
+              kontrol süreçlerini tek bir çatı altında profesyonel şekilde yönetiyoruz.
+            </p>
+          </div>
+          <p style="color:#cfcfcf;">
+            Özellikle premium araç sahipleri için sade, kaliteli ve güvenilir bir hizmet yapısı oluşturuyoruz.
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <strong>01</strong>
+            <h4>Aracı Dinliyoruz</h4>
+            <p>Şikayetleri, belirtileri ve ihtiyaçları net şekilde öğreniyoruz.</p>
+          </div>
+
+          <div class="step">
+            <strong>02</strong>
+            <h4>Kontrol Ediyoruz</h4>
+            <p>Gerekli mekanik ve elektronik testlerle sorunu doğru tespit ediyoruz.</p>
+          </div>
+
+          <div class="step">
+            <strong>03</strong>
+            <h4>Çözüm Sunuyoruz</h4>
+            <p>Temiz işçilik, net fiyat ve güven veren teslim süreci sağlıyoruz.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="randevu" class="booking">
+    <div class="container">
+      <div class="section-head">
+        <small>Randevu</small>
+        <h2>Gün ve saat seç, bilgileri doldur, hazır mesajla gönder</h2>
+        <p>
+          Formu doldurup randevu butonuna bastığında WhatsApp üzerinde sana hazır mesaj oluşur.
+        </p>
+      </div>
+
+      <div class="booking-grid">
+        <div class="card">
+          <div class="form-grid">
+            <div class="field">
+              <label>Ad Soyad</label>
+              <input type="text" id="name" placeholder="Ad Soyad">
+            </div>
+
+            <div class="field">
+              <label>Telefon</label>
+              <input type="text" id="phone" placeholder="05xx xxx xx xx">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>Hizmet</label>
+              <select id="service">
+                <option>Mekanik Servis</option>
+                <option>Diagnostik Tarama</option>
+                <option>Premium Araç Hizmeti</option>
+                <option>Periyodik Bakım</option>
+                <option>Araç Kontrol Paketi</option>
+                <option>Hızlı Arıza Tespiti</option>
+                <option>Ekspertiz</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Araç Bilgisi</label>
+              <input type="text" id="vehicle" placeholder="Örn: BMW 320i 2016">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Ek Not</label>
+            <textarea id="note" placeholder="Arıza, bakım isteği veya detay yaz"></textarea>
+          </div>
+
+          <div class="hero-actions" style="margin-bottom:0;">
+            <button class="btn btn-primary" onclick="sendWhatsapp()">WhatsApp ile Randevu Gönder</button>
+            <a class="btn btn-outline" href="tel:+905338650737">Arayarak Randevu Al</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field">
+            <label>Gün Seç</label>
+            <div class="day-tabs" id="days"></div>
+          </div>
+
+          <div class="field">
+            <label>Saat Seç</label>
+            <div class="time-grid" id="times"></div>
+          </div>
+
+          <div class="summary">
+            <div>Gün: <strong id="selectedDayText">Seçilmedi</strong></div>
+            <div>Saat: <strong id="selectedTimeText">Seçilmedi</strong></div>
+            <div>Hizmet: <strong id="selectedServiceText">Mekanik Servis</strong></div>
+          </div>
+
+          <div class="working-hours">
+            <div class="hours-row"><span>Pazartesi - Cuma</span><strong>08:30 - 18:30</strong></div>
+            <div class="hours-row"><span>Cumartesi</span><strong>08:30 - 15:00</strong></div>
+            <div class="hours-row"><span>Pazar</span><strong>Kapalı</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-wrap">
+    <div class="container">
+      <div class="section-head" style="text-align:center;">
+        <small>Sık Sorulan Sorular</small>
+        <h2>Müşterinin hızlıca cevap bulacağı alan</h2>
+      </div>
+
+      <div class="faq-item">
+        <h4>Randevu almadan gelebilir miyim?</h4>
+        <p>Evet gelebilirsin, ancak yoğunluk durumuna göre bekleme olmaması için önce WhatsApp üzerinden yazman daha iyi olur.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Ekspertizde hangi kontroller yapılıyor?</h4>
+        <p>Kaporta, boya, mekanik, elektronik ve genel durum kontrolleri araç tipine göre detaylı şekilde incelenir.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Garantili Arabam ile bağlantınız var mı?</h4>
+        <p>Evet. Ekspertiz tarafında Garantili Arabam yetkili bayisi olarak güven veren bir kontrol süreci sunuyoruz.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="iletisim">
+    <div class="container">
+      <div class="section-head">
+        <small>İletişim ve Konum</small>
+        <h2>Bize kolayca ulaş</h2>
+        <p>Lefkoşa sanayi bölgesindeki konumumuzdan direkt servis, ekspertiz ve araç kontrol hizmeti sunuyoruz.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card">
+          <a class="contact-link" href="tel:+905338650737">
+            <div class="icon">📞</div>
+            <div>
+              <strong>Telefon</strong>
+              <span>0 533 865 07 37</span>
+            </div>
+          </a>
+
+          <a class="contact-link" href="https://instagram.com/orgunlargarage" target="_blank">
+            <div class="icon">📱</div>
+            <div>
+              <strong>Instagram</strong>
+              <span>@orgunlargarage</span>
+            </div>
+          </a>
+
+          <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=Orgunlar+Garage,+Lefko%C5%9Fa,+Sanayi+Cd,+21.+Sk+No:41,+Lefko%C5%9Fa+1025" target="_blank">
+            <div class="icon">📍</div>
+            <div>
+              <strong>Adres</strong>
+              <span>Lefkoşa Sanayi Bölgesi 21. Sokak 41 Numara</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="card">
+          <div class="section-head" style="margin-bottom:18px;">
+            <small>Hızlı İşlem</small>
+            <h2 style="font-size:34px;">Tek tıkla bize ulaş</h2>
+          </div>
+
+          <div class="hero-actions" style="flex-direction:column;">
+            <a class="btn btn-primary" href="tel:+905338650737">Hemen Ara</a>
+            <a class="btn btn-outline" href="https://wa.me/905338650737" target="_blank">WhatsApp’tan Yaz</a>
+            <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=Orgunlar+Garage,+Lefko%C5%9Fa,+Sanayi+Cd,+21.+Sk+No:41,+Lefko%C5%9Fa+1025" target="_blank">Konuma Git</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © 2026 ORGUNLAR GARAGE • Luxury Car Service • Lefkoşa Sanayi Bölgesi
+    </div>
+  </footer>
+
+  <script>
+    const bookingData = {
+      "Pazartesi": ["09:00", "10:30", "12:00", "14:00", "15:30", "17:00"],
+      "Salı": ["09:00", "10:30", "12:00", "14:00", "15:30", "17:00"],
+      "Çarşamba": ["09:00", "10:30", "12:00", "14:00", "15:30", "17:00"],
+      "Perşembe": ["09:00", "10:30", "12:00", "14:00", "15:30", "17:00"],
+      "Cuma": ["09:00", "10:30", "12:00", "14:00", "15:30", "17:00"],
+      "Cumartesi": ["09:00", "10:30", "12:00", "13:30"]
+    };
+
+    let selectedDay = "Pazartesi";
+    let selectedTime = "";
+
+    const daysWrap = document.getElementById("days");
+    const timesWrap = document.getElementById("times");
+    const selectedDayText = document.getElementById("selectedDayText");
+    const selectedTimeText = document.getElementById("selectedTimeText");
+    const selectedServiceText = document.getElementById("selectedServiceText");
+    const serviceSelect = document.getElementById("service");
+
+    function renderDays() {
+      daysWrap.innerHTML = "";
+      Object.keys(bookingData).forEach(day => {
+        const btn = document.createElement("button");
+        btn.className = "day-btn" + (day === selectedDay ? " active" : "");
+        btn.textContent = day;
+        btn.onclick = () => {
+          selectedDay = day;
+          selectedTime = "";
+          renderDays();
+          renderTimes();
+          updateSummary();
+        };
+        daysWrap.appendChild(btn);
+      });
+    }
+
+    function renderTimes() {
+      timesWrap.innerHTML = "";
+      bookingData[selectedDay].forEach(time => {
+        const btn = document.createElement("button");
+        btn.className = "time-btn" + (time === selectedTime ? " active" : "");
+        btn.textContent = time;
+        btn.onclick = () => {
+          selectedTime = time;
+          renderTimes();
+          updateSummary();
+        };
+        timesWrap.appendChild(btn);
+      });
+    }
+
+    function updateSummary() {
+      selectedDayText.textContent = selectedDay || "Seçilmedi";
+      selectedTimeText.textContent = selectedTime || "Seçilmedi";
+      selectedServiceText.textContent = serviceSelect.value || "Seçilmedi";
+    }
+
+    serviceSelect.addEventListener("change", updateSummary);
+
+    function sendWhatsapp() {
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const service = document.getElementById("service").value.trim();
+      const vehicle = document.getElementById("vehicle").value.trim();
+      const note = document.getElementById("note").value.trim();
+
+      if (!name || !phone || !selectedDay || !selectedTime) {
+        alert("Lütfen ad soyad, telefon, gün ve saat seçimini doldur.");
+        return;
+      }
+
+      const text =
+`Merhaba, ORGUNLAR GARAGE için randevu oluşturmak istiyorum.
+
+Ad Soyad: ${name}
+Telefon: ${phone}
+Hizmet: ${service}
+Gün: ${selectedDay}
+Saat: ${selectedTime}
+Araç Bilgisi: ${vehicle || "-"}
+Not: ${note || "-"}`;
+
+      const url = "https://wa.me/905338650737?text=" + encodeURIComponent(text);
+      window.open(url, "_blank");
+    }
+
+    renderDays();
+    renderTimes();
+    updateSummary();
+  </script>
 
 </body>
 </html>
