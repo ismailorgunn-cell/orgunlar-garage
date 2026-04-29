@@ -12,12 +12,11 @@
 <style>
 :root{
   --red:#ff1717;
-  --red2:#b80000;
-  --black:#050505;
+  --dark:#050505;
   --card:#111214;
   --line:rgba(255,255,255,.12);
   --muted:#b8bec8;
-  --container:1450px;
+  --container:1440px;
 }
 
 *{box-sizing:border-box}
@@ -42,19 +41,17 @@ a{text-decoration:none;color:inherit}
   transform:translateY(0);
 }
 
-/* HEADER */
-
 header{
   position:sticky;
   top:0;
   z-index:100;
-  background:rgba(0,0,0,.88);
-  backdrop-filter:blur(16px);
+  background:rgba(0,0,0,.92);
+  backdrop-filter:blur(18px);
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .nav-inner{
-  height:92px;
+  height:96px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -64,11 +61,11 @@ header{
 .brand{
   display:flex;
   align-items:center;
-  gap:16px;
+  gap:14px;
 }
 
 .brand-logo{
-  width:108px;
+  width:118px;
   height:86px;
   display:flex;
   align-items:center;
@@ -77,10 +74,10 @@ header{
 }
 
 .brand-logo img{
-  width:135px;
-  height:135px;
+  width:145px;
+  height:145px;
   object-fit:contain;
-  filter:drop-shadow(0 0 16px rgba(255,0,0,.35));
+  filter:drop-shadow(0 0 18px rgba(255,0,0,.35));
 }
 
 .brand small{
@@ -93,7 +90,7 @@ header{
 }
 
 .brand strong{
-  font-size:24px;
+  font-size:25px;
   font-weight:900;
 }
 
@@ -105,13 +102,7 @@ nav{
   font-weight:900;
 }
 
-nav a{
-  color:#e8ebef;
-}
-
-nav a:hover{
-  color:var(--red);
-}
+nav a:hover{color:var(--red)}
 
 .header-actions{
   display:flex;
@@ -143,19 +134,16 @@ nav a:hover{
   border-color:rgba(255,255,255,.14);
 }
 
-.btn:hover{
-  transform:translateY(-2px);
-}
-
-/* HERO */
+.btn:hover{transform:translateY(-2px)}
 
 .hero{
   position:relative;
   min-height:760px;
   overflow:hidden;
   background:
-    radial-gradient(circle at 78% 28%,rgba(255,0,0,.22),transparent 30%),
-    linear-gradient(135deg,#050505 0%,#090909 55%,#160000 100%);
+    radial-gradient(circle at 82% 30%,rgba(255,0,0,.34),transparent 28%),
+    radial-gradient(circle at 20% 0%,rgba(255,0,0,.16),transparent 25%),
+    linear-gradient(135deg,#030303 0%,#080808 55%,#190000 100%);
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 
@@ -164,7 +152,19 @@ nav a:hover{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(90deg,rgba(0,0,0,.98) 0%,rgba(0,0,0,.78) 37%,rgba(0,0,0,.15) 100%);
+    linear-gradient(90deg,rgba(0,0,0,.98) 0%,rgba(0,0,0,.70) 40%,rgba(0,0,0,.20) 100%);
+  z-index:1;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  right:-120px;
+  top:80px;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle,rgba(255,0,0,.22),transparent 65%);
+  filter:blur(10px);
   z-index:1;
 }
 
@@ -175,11 +175,7 @@ nav a:hover{
   grid-template-columns:.92fr 1.08fr;
   min-height:760px;
   align-items:center;
-  gap:35px;
-}
-
-.hero-content{
-  padding:60px 0;
+  gap:38px;
 }
 
 .tag{
@@ -192,15 +188,15 @@ nav a:hover{
   font-size:13px;
   font-weight:900;
   margin-bottom:26px;
-  letter-spacing:.02em;
 }
 
 .hero h1{
   margin:0;
-  font-size:70px;
+  font-size:72px;
   line-height:.95;
   letter-spacing:-.055em;
   font-weight:900;
+  text-transform:uppercase;
 }
 
 .red{color:var(--red)}
@@ -213,19 +209,12 @@ nav a:hover{
   max-width:650px;
 }
 
-.hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-top:32px;
-}
-
 .trust{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:14px;
   margin-top:30px;
-  max-width:620px;
+  max-width:650px;
 }
 
 .trust-box{
@@ -245,13 +234,21 @@ nav a:hover{
   font-size:22px;
 }
 
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:30px;
+}
+
 .hero-car{
   position:relative;
-  height:620px;
+  height:610px;
   border-radius:30px;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 0 60px rgba(255,0,0,.20);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 0 70px rgba(255,0,0,.20);
+  background:#111;
 }
 
 .hero-car img{
@@ -260,6 +257,7 @@ nav a:hover{
   object-fit:cover;
   object-position:center;
   display:block;
+  transform:scale(1.04);
 }
 
 .hero-car::after{
@@ -267,11 +265,9 @@ nav a:hover{
   position:absolute;
   inset:0;
   background:
-    linear-gradient(90deg,rgba(0,0,0,.45),transparent 35%),
+    linear-gradient(90deg,rgba(0,0,0,.35),transparent 40%),
     linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55));
 }
-
-/* SECTIONS */
 
 section{padding:78px 0}
 
@@ -296,6 +292,7 @@ section{padding:78px 0}
   line-height:1.1;
   letter-spacing:-.04em;
   font-weight:900;
+  text-transform:uppercase;
 }
 
 .section-head p{
@@ -353,7 +350,6 @@ section{padding:78px 0}
   margin-top:28px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:0;
   background:linear-gradient(180deg,#101113,#080808);
   border:1px solid rgba(255,255,255,.12);
   border-radius:16px;
@@ -387,8 +383,6 @@ section{padding:78px 0}
   font-size:14px;
 }
 
-/* EXPERTIZ */
-
 .band{
   background:
     radial-gradient(circle at 20% 0%,rgba(255,0,0,.12),transparent 32%),
@@ -404,7 +398,7 @@ section{padding:78px 0}
   align-items:center;
 }
 
-.panel{
+.panel,.card{
   background:linear-gradient(180deg,#121316,#09090a);
   border:1px solid rgba(255,255,255,.12);
   border-radius:24px;
@@ -438,20 +432,11 @@ section{padding:78px 0}
   display:block;
 }
 
-/* RANDEVU */
-
 .booking{
   display:grid;
   grid-template-columns:1.05fr .95fr;
   gap:24px;
   align-items:start;
-}
-
-.card{
-  background:linear-gradient(180deg,#121316,#09090a);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:24px;
-  padding:30px;
 }
 
 .field-grid{
@@ -555,8 +540,6 @@ input:focus,select:focus,textarea:focus{
   border:1px solid rgba(255,255,255,.09);
 }
 
-/* CONTACT */
-
 .contact-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -595,8 +578,6 @@ input:focus,select:focus,textarea:focus{
   font-size:21px;
   line-height:1.35;
 }
-
-/* FOOTER */
 
 footer{
   border-top:1px solid rgba(255,255,255,.10);
@@ -637,8 +618,6 @@ footer{
   font-size:24px;
   box-shadow:0 0 28px rgba(255,23,23,.38);
 }
-
-/* MOBILE */
 
 @media(max-width:1100px){
   nav{display:none}
@@ -736,8 +715,6 @@ footer{
     grid-template-columns:1fr;
   }
 
-  .trust-box{text-align:left}
-
   section{padding:72px 0}
 
   .section-head h2{
@@ -832,7 +809,7 @@ footer{
     </div>
 
     <div class="hero-car reveal">
-      <img src="Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-04-29%20103023.png" alt="Orgunlar Garage Araç">
+      <img src="ekspertiz2.jpg" alt="Orgunlar Garage Lamborghini">
     </div>
   </div>
 </section>
