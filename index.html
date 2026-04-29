@@ -11,12 +11,12 @@
 
 <style>
 :root{
-  --red:#ff2020;
-  --red2:#b90000;
-  --dark:#050505;
-  --card:#101114;
-  --line:rgba(255,255,255,.10);
-  --muted:#b6bcc6;
+  --red:#ff1717;
+  --red2:#b80000;
+  --black:#050505;
+  --card:#111214;
+  --line:rgba(255,255,255,.12);
+  --muted:#b8bec8;
   --container:1450px;
 }
 
@@ -25,9 +25,7 @@ html{scroll-behavior:smooth}
 body{
   margin:0;
   font-family:'Inter',sans-serif;
-  background:
-    radial-gradient(circle at 85% 10%,rgba(255,0,0,.14),transparent 28%),
-    linear-gradient(180deg,#050505,#080808);
+  background:#050505;
   color:#fff;
   overflow-x:hidden;
 }
@@ -37,12 +35,14 @@ a{text-decoration:none;color:inherit}
 .reveal{
   opacity:0;
   transform:translateY(28px);
-  transition:.75s ease;
+  transition:.7s ease;
 }
 .reveal.show{
   opacity:1;
   transform:translateY(0);
 }
+
+/* HEADER */
 
 header{
   position:sticky;
@@ -50,11 +50,11 @@ header{
   z-index:100;
   background:rgba(0,0,0,.88);
   backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .nav-inner{
-  height:86px;
+  height:92px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -64,12 +64,12 @@ header{
 .brand{
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:16px;
 }
 
 .brand-logo{
-  width:86px;
-  height:76px;
+  width:108px;
+  height:86px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -77,8 +77,8 @@ header{
 }
 
 .brand-logo img{
-  width:120px;
-  height:120px;
+  width:135px;
+  height:135px;
   object-fit:contain;
   filter:drop-shadow(0 0 16px rgba(255,0,0,.35));
 }
@@ -87,8 +87,8 @@ header{
   display:block;
   color:#9aa0aa;
   font-size:10px;
-  letter-spacing:.30em;
-  margin-bottom:4px;
+  letter-spacing:.34em;
+  margin-bottom:5px;
   text-transform:uppercase;
 }
 
@@ -99,17 +99,30 @@ header{
 
 nav{
   display:flex;
-  gap:28px;
+  align-items:center;
+  gap:30px;
   font-size:14px;
-  font-weight:800;
+  font-weight:900;
 }
 
-nav a:hover{color:var(--red)}
+nav a{
+  color:#e8ebef;
+}
+
+nav a:hover{
+  color:var(--red);
+}
+
+.header-actions{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
 
 .btn{
-  min-height:54px;
-  padding:0 24px;
-  border-radius:16px;
+  min-height:56px;
+  padding:0 25px;
+  border-radius:15px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -121,8 +134,8 @@ nav a:hover{color:var(--red)}
 }
 
 .btn-red{
-  background:linear-gradient(180deg,#ff3434,#c90000);
-  box-shadow:0 0 28px rgba(255,31,31,.28);
+  background:linear-gradient(180deg,#ff3333,#c40000);
+  box-shadow:0 0 28px rgba(255,23,23,.30);
 }
 
 .btn-dark{
@@ -130,46 +143,63 @@ nav a:hover{color:var(--red)}
   border-color:rgba(255,255,255,.14);
 }
 
-.btn:hover{transform:translateY(-2px)}
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+/* HERO */
 
 .hero{
   position:relative;
-  min-height:calc(100vh - 86px);
-  display:flex;
-  align-items:center;
+  min-height:760px;
   overflow:hidden;
   background:
-    radial-gradient(circle at 80% 35%,rgba(255,0,0,.18),transparent 30%),
-    linear-gradient(135deg,#070707 0%,#0a0a0a 58%,#150000 100%);
+    radial-gradient(circle at 78% 28%,rgba(255,0,0,.22),transparent 30%),
+    linear-gradient(135deg,#050505 0%,#090909 55%,#160000 100%);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.98) 0%,rgba(0,0,0,.78) 37%,rgba(0,0,0,.15) 100%);
+  z-index:1;
 }
 
 .hero-grid{
   position:relative;
   z-index:2;
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:42px;
+  grid-template-columns:.92fr 1.08fr;
+  min-height:760px;
   align-items:center;
-  padding:48px 0 66px;
+  gap:35px;
+}
+
+.hero-content{
+  padding:60px 0;
 }
 
 .tag{
   display:inline-flex;
   padding:12px 18px;
   border-radius:999px;
-  background:rgba(255,31,31,.14);
-  border:1px solid rgba(255,31,31,.40);
-  color:#ffc0c0;
+  background:rgba(255,23,23,.12);
+  border:1px solid rgba(255,23,23,.42);
+  color:#ffd0d0;
   font-size:13px;
   font-weight:900;
-  margin-bottom:24px;
+  margin-bottom:26px;
+  letter-spacing:.02em;
 }
 
-h1{
+.hero h1{
   margin:0;
-  font-size:78px;
+  font-size:70px;
   line-height:.95;
-  letter-spacing:-.06em;
+  letter-spacing:-.055em;
   font-weight:900;
 }
 
@@ -177,151 +207,228 @@ h1{
 
 .hero p{
   margin:26px 0 0;
-  font-size:20px;
+  color:#d9dde4;
+  font-size:18px;
   line-height:1.75;
-  color:#dce1e8;
+  max-width:650px;
 }
 
-.actions{
+.hero-actions{
   display:flex;
   flex-wrap:wrap;
   gap:14px;
   margin-top:32px;
 }
 
-.chips{
+.trust{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:14px;
-  margin-top:32px;
+  margin-top:30px;
+  max-width:620px;
 }
 
-.chip{
-  padding:17px;
-  border-radius:18px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.11);
-  font-weight:800;
-  font-size:14px;
+.trust-box{
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.045);
+  border-radius:16px;
+  padding:16px;
+  font-size:13px;
+  font-weight:900;
+  display:flex;
+  gap:10px;
+  align-items:center;
 }
 
-.hero-media{
-  border-radius:34px;
+.trust-box span{
+  color:var(--red);
+  font-size:22px;
+}
+
+.hero-car{
+  position:relative;
+  height:620px;
+  border-radius:30px;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 0 55px rgba(255,0,0,.18);
-  background:#111;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 0 60px rgba(255,0,0,.20);
 }
 
-.hero-media img{
+.hero-car img{
   width:100%;
-  height:540px;
+  height:100%;
   object-fit:cover;
+  object-position:center;
   display:block;
 }
 
-section{padding:88px 0}
-
-.section-head{
-  max-width:900px;
-  margin-bottom:38px;
+.hero-car::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.45),transparent 35%),
+    linear-gradient(180deg,transparent 55%,rgba(0,0,0,.55));
 }
 
-.section-head.center{
+/* SECTIONS */
+
+section{padding:78px 0}
+
+.section-head{
   text-align:center;
-  margin-left:auto;
-  margin-right:auto;
+  max-width:900px;
+  margin:0 auto 38px;
 }
 
 .section-head small{
   display:block;
-  color:#ff6363;
-  font-size:12px;
-  letter-spacing:.32em;
+  color:var(--red);
   font-weight:900;
+  letter-spacing:.32em;
+  font-size:12px;
   margin-bottom:10px;
 }
 
 .section-head h2{
   margin:0;
-  font-size:54px;
-  line-height:1.08;
-  letter-spacing:-.045em;
+  font-size:46px;
+  line-height:1.1;
+  letter-spacing:-.04em;
   font-weight:900;
 }
 
 .section-head p{
+  margin:14px 0 0;
   color:var(--muted);
-  font-size:18px;
-  line-height:1.8;
-  margin-top:16px;
+  font-size:17px;
+  line-height:1.7;
 }
 
 .services{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:20px;
+  gap:18px;
 }
 
-.service,.panel,.card{
-  background:linear-gradient(180deg,#111216,#09090a);
-  border:1px solid var(--line);
-  border-radius:30px;
-  padding:30px;
+.service{
+  min-height:270px;
+  background:linear-gradient(180deg,#131416,#09090a);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  padding:28px;
+  text-align:center;
+  transition:.25s;
 }
 
 .service:hover{
-  border-color:rgba(255,31,31,.45);
-  box-shadow:0 0 30px rgba(255,31,31,.12);
+  transform:translateY(-6px);
+  border-color:rgba(255,23,23,.5);
+  box-shadow:0 0 32px rgba(255,0,0,.15);
 }
 
 .icon{
-  width:58px;
-  height:58px;
-  border-radius:18px;
-  background:rgba(255,31,31,.13);
-  border:1px solid rgba(255,31,31,.32);
+  width:70px;
+  height:70px;
+  margin:0 auto 22px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:28px;
-  margin-bottom:18px;
+  color:var(--red);
+  font-size:34px;
 }
 
-.service h3{margin:0;font-size:25px}
-.service p,.panel p{
-  color:#b7bdc6;
-  line-height:1.8;
-  font-size:16px;
+.service h3{
+  margin:0;
+  font-size:22px;
 }
+
+.service p{
+  color:#bec4ce;
+  line-height:1.75;
+  font-size:15px;
+}
+
+.stats{
+  margin-top:28px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  background:linear-gradient(180deg,#101113,#080808);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.stat{
+  padding:24px;
+  display:flex;
+  gap:16px;
+  align-items:center;
+  justify-content:center;
+  border-right:1px solid rgba(255,255,255,.10);
+}
+
+.stat:last-child{border-right:none}
+
+.stat .sicon{
+  font-size:34px;
+  color:var(--red);
+}
+
+.stat strong{
+  display:block;
+  font-size:30px;
+  line-height:1;
+}
+
+.stat span{
+  color:#b8bec8;
+  font-size:14px;
+}
+
+/* EXPERTIZ */
 
 .band{
   background:
-    linear-gradient(180deg,rgba(255,31,31,.10),rgba(0,0,0,.55)),
-    #080808;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+    radial-gradient(circle at 20% 0%,rgba(255,0,0,.12),transparent 32%),
+    linear-gradient(180deg,#080808,#050505);
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .split{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:24px;
+  gap:28px;
   align-items:center;
 }
 
+.panel{
+  background:linear-gradient(180deg,#121316,#09090a);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  padding:34px;
+}
+
 .panel h3{
-  font-size:42px;
   margin:10px 0 0;
+  font-size:42px;
   line-height:1.1;
   letter-spacing:-.04em;
 }
 
+.panel p{
+  color:#c8ced8;
+  line-height:1.8;
+  font-size:16px;
+}
+
 .expert-img{
-  border-radius:30px;
+  border-radius:24px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,.12);
-  box-shadow:0 0 35px rgba(255,0,0,.15);
+  box-shadow:0 0 40px rgba(255,0,0,.16);
 }
 
 .expert-img img{
@@ -331,11 +438,20 @@ section{padding:88px 0}
   display:block;
 }
 
+/* RANDEVU */
+
 .booking{
   display:grid;
   grid-template-columns:1.05fr .95fr;
   gap:24px;
   align-items:start;
+}
+
+.card{
+  background:linear-gradient(180deg,#121316,#09090a);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  padding:30px;
 }
 
 .field-grid{
@@ -348,7 +464,7 @@ section{padding:88px 0}
 
 label{
   display:block;
-  color:#a9afb8;
+  color:#b8bec8;
   font-weight:700;
   font-size:14px;
   margin-bottom:8px;
@@ -359,9 +475,9 @@ input,select,textarea{
   border:none;
   outline:none;
   background:#070707;
-  border:1px solid rgba(255,255,255,.11);
+  border:1px solid rgba(255,255,255,.13);
   color:#fff;
-  border-radius:17px;
+  border-radius:16px;
   padding:17px;
   font-size:15px;
   font-family:inherit;
@@ -370,8 +486,8 @@ input,select,textarea{
 textarea{min-height:130px;resize:vertical}
 
 input:focus,select:focus,textarea:focus{
-  border-color:rgba(255,31,31,.6);
-  box-shadow:0 0 0 4px rgba(255,31,31,.08);
+  border-color:rgba(255,23,23,.65);
+  box-shadow:0 0 0 4px rgba(255,23,23,.08);
 }
 
 .day-list,.time-list{
@@ -383,17 +499,17 @@ input:focus,select:focus,textarea:focus{
 .day-btn,.time-btn{
   border:none;
   cursor:pointer;
-  border-radius:17px;
+  border-radius:16px;
   font-weight:900;
   background:#070707;
-  border:1px solid rgba(255,255,255,.11);
+  border:1px solid rgba(255,255,255,.13);
   color:#fff;
 }
 
-.day-btn{padding:14px 17px}
+.day-btn{padding:14px 16px}
 
 .day-btn.active,.time-btn.active{
-  background:rgba(255,31,31,.18);
+  background:rgba(255,23,23,.18);
   border-color:var(--red);
 }
 
@@ -403,15 +519,23 @@ input:focus,select:focus,textarea:focus{
   margin-top:18px;
 }
 
-.time-btn{text-align:left;padding:16px}
-.time-btn small{display:block;color:#aab0ba;margin-top:5px}
+.time-btn{
+  text-align:left;
+  padding:16px;
+}
+
+.time-btn small{
+  display:block;
+  color:#aab0ba;
+  margin-top:5px;
+}
 
 .summary{
   margin-top:22px;
   padding:20px;
-  border-radius:22px;
+  border-radius:20px;
   background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.10);
   line-height:1.9;
 }
 
@@ -428,8 +552,10 @@ input:focus,select:focus,textarea:focus{
   padding:16px;
   border-radius:18px;
   background:#080808;
-  border:1px solid rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.09);
 }
+
+/* CONTACT */
 
 .contact-grid{
   display:grid;
@@ -442,25 +568,53 @@ input:focus,select:focus,textarea:focus{
   gap:15px;
   padding:18px;
   background:#080808;
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:20px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
   margin-bottom:14px;
 }
 
 .ci{
   width:44px;
   height:44px;
-  border-radius:15px;
+  border-radius:14px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:rgba(255,31,31,.13);
+  background:rgba(255,23,23,.13);
   font-size:20px;
   flex:none;
 }
 
-.contact-link small{display:block;color:#9097a2;margin-bottom:5px}
-.contact-link strong{font-size:21px;line-height:1.35}
+.contact-link small{
+  display:block;
+  color:#9097a2;
+  margin-bottom:5px;
+}
+
+.contact-link strong{
+  font-size:21px;
+  line-height:1.35;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid rgba(255,255,255,.10);
+  padding:30px 0;
+  color:#858b94;
+  background:#050505;
+}
+
+.footer-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:20px;
+  align-items:center;
+}
+
+.footer-inner strong{color:#fff}
+.footer-center{text-align:center}
+.footer-right{text-align:right}
 
 .floating{
   position:fixed;
@@ -481,32 +635,17 @@ input:focus,select:focus,textarea:focus{
   justify-content:center;
   background:linear-gradient(180deg,#ff3333,#c90000);
   font-size:24px;
-  box-shadow:0 0 28px rgba(255,31,31,.38);
+  box-shadow:0 0 28px rgba(255,23,23,.38);
 }
 
-footer{
-  border-top:1px solid var(--line);
-  padding:30px 0;
-  color:#858b94;
-  background:#050505;
-}
-
-.footer-inner{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:20px;
-  align-items:center;
-}
-
-.footer-inner strong{color:#fff}
-.footer-center{text-align:center}
-.footer-right{text-align:right}
+/* MOBILE */
 
 @media(max-width:1100px){
   nav{display:none}
   .hero-grid,.split,.booking,.contact-grid{grid-template-columns:1fr}
   .services{grid-template-columns:repeat(2,1fr)}
-  h1{font-size:64px}
+  .hero-car{height:430px}
+  .stats{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:700px){
@@ -515,32 +654,36 @@ footer{
   .nav-inner{height:82px}
 
   .brand-logo{
-    width:62px;
-    height:62px;
+    width:58px;
+    height:58px;
   }
 
   .brand-logo img{
-    width:92px;
-    height:92px;
+    width:88px;
+    height:88px;
   }
 
   .brand small{
     font-size:9px;
-    letter-spacing:.24em;
+    letter-spacing:.22em;
   }
 
   .brand strong{
-    font-size:19px;
+    font-size:18px;
     line-height:1.05;
     display:block;
   }
 
-  .nav-inner > .btn{
+  .header-actions .btn-dark{
+    display:none;
+  }
+
+  .header-actions .btn-red{
+    width:auto;
     min-height:48px;
     padding:0 17px;
     border-radius:16px;
     font-size:14px;
-    width:auto;
   }
 
   .hero{
@@ -548,20 +691,22 @@ footer{
   }
 
   .hero-grid{
+    min-height:auto;
     padding:34px 0 58px;
     gap:26px;
   }
 
-  .hero-media{
+  .hero-content{
+    order:1;
+  }
+
+  .hero-car{
     order:2;
-    border-radius:24px;
-  }
-
-  .hero-media img{
     height:260px;
+    border-radius:22px;
   }
 
-  h1{
+  .hero h1{
     font-size:46px;
     line-height:.98;
   }
@@ -577,7 +722,7 @@ footer{
     font-size:12px;
   }
 
-  .actions{
+  .hero-actions{
     flex-direction:column;
   }
 
@@ -587,21 +732,21 @@ footer{
     font-size:17px;
   }
 
-  .chips,.services,.field-grid,.time-list{
+  .trust,.services,.field-grid,.time-list,.stats{
     grid-template-columns:1fr;
   }
 
-  .chip{text-align:center}
+  .trust-box{text-align:left}
 
   section{padding:72px 0}
 
   .section-head h2{
-    font-size:38px;
+    font-size:36px;
   }
 
   .service,.panel,.card{
     padding:24px;
-    border-radius:25px;
+    border-radius:22px;
   }
 
   .panel h3{
@@ -612,11 +757,6 @@ footer{
     height:260px;
   }
 
-  .floating{
-    bottom:86px;
-    right:14px;
-  }
-
   .footer-inner{
     grid-template-columns:1fr;
     text-align:left;
@@ -624,6 +764,11 @@ footer{
 
   .footer-center,.footer-right{
     text-align:left;
+  }
+
+  .floating{
+    right:14px;
+    bottom:86px;
   }
 }
 </style>
@@ -651,39 +796,42 @@ footer{
       <a href="#iletisim">İLETİŞİM</a>
     </nav>
 
-    <a class="btn btn-red" href="#randevu">RANDEVU AL</a>
+    <div class="header-actions">
+      <a class="btn btn-dark" href="tel:+905338650737">📞 0 533 865 07 37</a>
+      <a class="btn btn-red" href="#randevu">RANDEVU AL</a>
+    </div>
   </div>
 </header>
 
 <section id="anasayfa" class="hero">
   <div class="container hero-grid">
-    <div class="reveal">
+    <div class="hero-content reveal">
       <div class="tag">LEFKOŞA SANAYİ BÖLGESİ • PREMIUM ARAÇ SERVİSİ</div>
 
       <h1>
-        Aracınız için<br>
-        <span class="red">güven veren</span><br>
-        servis deneyimi.
+        ARACINIZ İÇİN<br>
+        <span class="red">GÜVEN VEREN</span><br>
+        SERVİS DENEYİMİ
       </h1>
 
       <p>
         Orgunlar Garage; mekanik servis, ekspertiz, arıza tespit, periyodik bakım ve yazılım hizmetlerini temiz işçilik, net iletişim ve premium hizmet anlayışıyla sunar.
       </p>
 
-      <div class="actions">
-        <a href="#randevu" class="btn btn-red">Randevu Al</a>
-        <a href="tel:+905338650737" class="btn btn-dark">Hemen Ara</a>
-        <a href="https://wa.me/905338650737" target="_blank" class="btn btn-dark">WhatsApp</a>
+      <div class="trust">
+        <div class="trust-box"><span>🛡️</span> Garantili Arabam Yetkili Bayisi</div>
+        <div class="trust-box"><span>🔧</span> Mekanik + Ekspertiz</div>
+        <div class="trust-box"><span>💬</span> WhatsApp Randevu</div>
       </div>
 
-      <div class="chips">
-        <div class="chip">Garantili Arabam Yetkili Bayisi</div>
-        <div class="chip">Mekanik + Ekspertiz</div>
-        <div class="chip">WhatsApp Randevu</div>
+      <div class="hero-actions">
+        <a href="#randevu" class="btn btn-red">📅 Randevu Al</a>
+        <a href="tel:+905338650737" class="btn btn-dark">📞 Hemen Ara</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Orgunlar+Garage,+Lefko%C5%9Fa,+Sanayi+Cd,+21.+Sk+No:41,+Lefko%C5%9Fa+1025" target="_blank" class="btn btn-dark">📍 Konuma Git</a>
       </div>
     </div>
 
-    <div class="hero-media reveal">
+    <div class="hero-car reveal">
       <img src="Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-04-29%20103023.png" alt="Orgunlar Garage Araç">
     </div>
   </div>
@@ -691,17 +839,24 @@ footer{
 
 <section id="hizmetler">
   <div class="container">
-    <div class="section-head center reveal">
+    <div class="section-head reveal">
       <small>HİZMETLERİMİZ</small>
-      <h2>Tek noktada profesyonel araç çözümü</h2>
+      <h2>TEK NOKTADA MEKANİK, EKSPERTİZ VE ARAÇ KONTROL SİSTEMİ</h2>
       <p>Müşteriye güven veren tarafımız: doğru tespit, net fiyat, temiz işçilik ve hızlı iletişim.</p>
     </div>
 
     <div class="services">
-      <div class="service reveal"><div class="icon">🔧</div><h3>Mekanik Servis</h3><p>Motor, yürüyen aksam, bakım ve genel onarım işlemlerinde profesyonel servis desteği.</p></div>
+      <div class="service reveal"><div class="icon">🔧</div><h3>Mekanik Servis</h3><p>Motor, yürüyen aksam, bakım ve genel onarım işlemleri.</p></div>
       <div class="service reveal"><div class="icon">🛡️</div><h3>Oto Ekspertiz</h3><p>Alım-satım öncesi araç kontrolü, kaporta boya, mekanik ve elektronik değerlendirme.</p></div>
       <div class="service reveal"><div class="icon">💻</div><h3>Yazılım / Performans</h3><p>Performans odaklı yazılım ve araç sistemleri için profesyonel yönlendirme.</p></div>
       <div class="service reveal"><div class="icon">📟</div><h3>Arıza Tespit</h3><p>Diagnostik cihazlarla hata analizi, canlı değer kontrolü ve doğru yönlendirme.</p></div>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="sicon">👥</div><div><strong>1000+</strong><span>Mutlu Müşteri</span></div></div>
+      <div class="stat"><div class="sicon">🚗</div><div><strong>2500+</strong><span>Tamamlanan İşlem</span></div></div>
+      <div class="stat"><div class="sicon">🛡️</div><div><strong>%100</strong><span>Müşteri Memnuniyeti</span></div></div>
+      <div class="stat"><div class="sicon">🕒</div><div><strong>7/24</strong><span>Destek & İletişim</span></div></div>
     </div>
   </div>
 </section>
@@ -771,7 +926,7 @@ footer{
           <textarea id="note" placeholder="Arıza, bakım isteği veya detay yaz"></textarea>
         </div>
 
-        <div class="actions" style="margin-top:10px;">
+        <div class="hero-actions" style="margin-top:10px;">
           <button class="btn btn-red" onclick="sendWhatsapp()">WhatsApp ile Randevu Gönder</button>
           <a href="tel:+905338650737" class="btn btn-dark">Arayarak Randevu Al</a>
         </div>
